@@ -13,7 +13,7 @@ public class Gun : MonoBehaviour
 
     public bool debug = false; //set true to display debug msgs
     [Header("Audio")]
-    public AudioClip fire;             //make one for reload, shoot, pick up ammo, out of bullets
+    public AudioClip fire, getAmmo;          //make one for reload, shoot, pick up ammo, out of bullets
 
     //private variables
     [Header("Ammo Management")]
@@ -76,6 +76,11 @@ public class Gun : MonoBehaviour
                 if(debug) Debug.Log("Out of Ammo!");
             }
         }
+    }
+
+    public void GetAmmo() {
+        totalAmmo += 90;
+        aud.PlayOneShot(getAmmo);
     }
 
     IEnumerator Cooldown() {
