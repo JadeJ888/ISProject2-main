@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Bullet
+  - AmmoPickup
   layers:
   - Default
   - TransparentFX
