@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
 
     void Start() {
         aud = this.gameObject.GetComponent<AudioSource>();
+        aud.spatialBlend = 1;  //make audio 3d instead of 2d
     }
 
     void OnCollisionEnter(Collision other)
