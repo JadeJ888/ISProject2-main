@@ -5,10 +5,15 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int health = 10;
+    public AudioClip death;
+    private AudioSource aud;
+
     [Tooltip("Check this box if this object is just an object, not an enemy")]
     public bool isObject = false;
 
-
+    void Start() {
+        aud = this.gameObject.GetComponent<AudioSource>();
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -35,6 +40,7 @@ public class Health : MonoBehaviour
         if(isObject)
         {
             Destroy(this.GetComponent<Collider>());
+            Destroy(this.GetComponent<Renderer>());
             for(int i = 0; i < 4; i++)
             {
                 GameObject part = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -43,7 +49,8 @@ public class Health : MonoBehaviour
                 part.transform.Translate(Random.Range(-.5f, .5f), Random.Range(-.5f, .5f), Random.Range(-.5f, .5f));
                 part.AddComponent<Rigidbody>();
             }
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 1);
+            aud.PlayOneShot(death);
         } else
         {
             this.gameObject.AddComponent<Rigidbody>();
